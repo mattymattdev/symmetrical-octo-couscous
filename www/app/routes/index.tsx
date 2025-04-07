@@ -8,7 +8,7 @@ import { seo } from '~/utils/seo'
 import { DEFAULT_IMAGE, fixtureData } from '~/common'
 
 
-const loadAboutServerFn = createServerFn({method: 'GET', type: 'static'}).handler(async () => {
+const loadAboutServerFn = createServerFn({method: 'GET'}).handler(async () => {
   const firstPost = fixtureData[0];
   
   return {content: firstPost.content}

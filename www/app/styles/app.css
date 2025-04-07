@@ -11,3 +11,52 @@ body {
   @apply bg-yellow-500;
   color: rgb(254, 250, 224);
 }
+
+
+.article-md {
+  p {
+    margin-bottom: 1rem;
+  }
+
+  code {
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin-bottom: 1rem;
+    list-style-type: disc;
+    padding-left: 2rem;
+  }
+
+  ol {
+    margin-bottom: 1rem;
+    list-style-type: decimal;
+    padding-left: 2rem;
+  }
+
+  a {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+}

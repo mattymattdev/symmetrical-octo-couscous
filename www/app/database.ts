@@ -3,7 +3,7 @@ import { neon, neonConfig } from '@neondatabase/serverless';
 // See https://neon.tech/docs/serverless/serverless-driver
 // for more information
 
-const LOCAL_DATABASE_URL = "postgres://postgres:postgres@db.localtest.me:5432/cleanproject";
+export const LOCAL_DATABASE_URL = "postgres://postgres:postgres@db.localtest.me:5432/cleanproject";
 
 /**
  * Get a neon client for the given connection URL
