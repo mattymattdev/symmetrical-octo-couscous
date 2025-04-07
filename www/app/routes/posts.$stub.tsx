@@ -7,30 +7,25 @@ import { getSql, LOCAL_DATABASE_URL } from '~/database';
 
 const loadPostServerFn = createServerFn({method: 'GET'})
 .validator((data: string) => data)
-.handler(async (ctx) : Promise<{article: Article | null, dbData: string | null}> => {
+.handler(async (ctx) : Promise<{article: Article | null}> => {
   
   try {
-
-    const sql = getSql(LOCAL_DATABASE_URL);
-    const result = await sql`SELECT fixture_col_a FROM fixture_table;`
-    const dbData = result[0].fixture_col_a
-    
+    console.log("Didn't expect this to happen at runtime in production! (See app.config.ts)")
     const article = fixtureData.find((article) => article.stub === ctx.data)
 
     return {
       article: article as Article | null,
-      dbData: dbData as string | null
     }
   } catch (error) {
     console.error(error)
-    return { article: null, dbData: null }
+    return { article: null }
   }
 })
 
 
 export const Route = createFileRoute('/posts/$stub')({
   head: (ctx) => {
-    const data = ctx.loaderData as unknown as { article: Article | null, dbData: string | null }
+    const data = ctx.loaderData as unknown as { article: Article | null }
 
     if (data && data.article) {
 
@@ -62,7 +57,7 @@ export const Route = createFileRoute('/posts/$stub')({
 })
 
 function PostComponent() {
-  const { article, dbData } = Route.useLoaderData() as { article: Article | null, dbData: string | null }
+  const { article } = Route.useLoaderData() as { article: Article | null }
 
   if (!article) {
     return <main className="md">
@@ -76,6 +71,5 @@ function PostComponent() {
   return <main className="article-md">
     <img className="max-w-full h-auto rounded-xl mb-10 object-cover shadow-lg" src={article.img_url} alt={article.title} />
     <Markdown>{article.content}</Markdown>
-    <h1>{dbData}</h1>
   </main>
 }
